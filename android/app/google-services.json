@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "778669413874",
+    "firebase_url": "https://zero-gravity-43c3b.firebaseio.com",
+    "project_id": "zero-gravity-43c3b",
+    "storage_bucket": "zero-gravity-43c3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778669413874:android:252228adae9303f125476b",
+        "android_client_info": {
+          "package_name": "com.sg.sleep_giant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778669413874-tatjtj68i7ec0s2792mm1oan8i0mk9ns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHPP0GQ4YQNgXiRn378Ae33qU6q1JphQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778669413874-tatjtj68i7ec0s2792mm1oan8i0mk9ns.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "778669413874-ktem71cliu54atglcjn5ol3ho3792439.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zerogravity.sleepgiant"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778669413874:android:847dfaf08e5313b525476b",
+        "android_client_info": {
+          "package_name": "com.zerogravity.sleep_giant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778669413874-tatjtj68i7ec0s2792mm1oan8i0mk9ns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHPP0GQ4YQNgXiRn378Ae33qU6q1JphQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778669413874-tatjtj68i7ec0s2792mm1oan8i0mk9ns.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "778669413874-ktem71cliu54atglcjn5ol3ho3792439.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zerogravity.sleepgiant"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
