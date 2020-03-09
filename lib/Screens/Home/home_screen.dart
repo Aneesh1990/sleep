@@ -105,9 +105,12 @@ class HomeScreen extends StatelessWidget {
         preferredSize:
             Size.fromHeight(MediaQuery.of(context).size.height * 0.3),
         child: new AppBar(
-          flexibleSpace: Image(
-            image: AssetImage('assets/home_bg.png'),
-            fit: BoxFit.fill,
+          flexibleSpace: AspectRatio(
+            aspectRatio: 1,
+            child: Image(
+              image: AssetImage('assets/home_bg.png'),
+              fit: BoxFit.fill,
+            ),
           ),
           backgroundColor: Colors.transparent,
         ),
@@ -122,12 +125,14 @@ class HomeScreen extends StatelessWidget {
                 tileMode: TileMode.clamp),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
                 child: GridView(
-                  padding: const EdgeInsets.all(50.0),
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.only(
+                      left: 50.0, right: 50.0, top: 10, bottom: 10),
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,

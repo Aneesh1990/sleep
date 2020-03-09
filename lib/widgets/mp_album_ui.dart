@@ -63,7 +63,8 @@ class AlbumUIState extends State<AlbumUI> with SingleTickerProviderStateMixin {
     );
 
     return new SizedBox.fromSize(
-      size: new Size(animation.value * 250.0, animation.value * 250.0),
+      size: new Size(animation.value * MediaQuery.of(context).size.height * 0.3,
+          animation.value * MediaQuery.of(context).size.height * 0.3),
       child: new Stack(
         children: <Widget>[
           myHero,

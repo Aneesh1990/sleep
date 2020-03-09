@@ -18,7 +18,7 @@ import 'package:sleep_giant/repositories/user_repository.dart';
 class SleepDeckParent extends StatelessWidget {
   UserRepository userRepository;
   // ignore: close_sinks
-  SleepDeckBloc sleepDeckBloc;
+//  SleepDeckBloc sleepDeckBloc;
   List<MusicFile> musicList;
 
   FirebaseUser user;
@@ -27,7 +27,7 @@ class SleepDeckParent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    sleepDeckBloc = BlocProvider.of<SleepDeckBloc>(context);
+//    sleepDeckBloc = BlocProvider.of<SleepDeckBloc>(context);
     return BlocProvider(
       create: (context) => SleepDeckBloc(userRepository: userRepository),
       child: SleepDeck(
