@@ -59,7 +59,6 @@ class SleepDeck extends StatefulWidget {
 
 class _SleepDeckState extends State<SleepDeck> {
   Random random = new Random();
-
   PersistentBottomSheetController _controller;
   final GlobalKey<State> _keyLoader = new GlobalKey<State>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -69,7 +68,6 @@ class _SleepDeckState extends State<SleepDeck> {
   MainAxisAlignment main = MainAxisAlignment.center;
   final TextEditingController _emailController = TextEditingController();
   bool showFab = true;
-//  SleepDeckSaveModel requestModel = SleepDeckSaveModel(deckName: '', decks: []);
 
   // <editor-fold desc=" Net work - calls  ">
 
@@ -150,11 +148,6 @@ class _SleepDeckState extends State<SleepDeck> {
     super.initState();
     getData();
   }
-
-//  getData() async {
-//    DocumentSnapshot doc =
-//        await _firestore.collection("users").document(user.uid).get();
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -285,155 +278,133 @@ class _SleepDeckState extends State<SleepDeck> {
                   )
                 : Container(),
           ),
-          Container(
-            height: 80,
-            color: Colors.indigo,
-            child: Stack(
-              children: <Widget>[
-                Center(
-                  child: RaisedButton(
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.transparent)),
-                    onPressed: () async {
-                      print("audio clicked");
-
-                      if (sleepDeckModel.isWindDownSelected ||
-                          sleepDeckModel.isSleepDeepSelected ||
-                          sleepDeckModel.isNapRecoverySelected ||
-                          sleepDeckModel.isWakeUpSelected ||
-                          sleepDeckModel.isYourSleepDeckSelected) {
-                      } else {
-                        generic.alertDialog(context, "Alert",
-                            "Please choose atleast 1 program", () {});
-                        return;
-                      }
-
-                      if (sleepDeckModel.isYourSleepDeckSelected) {
-//                        Navigator.of(context).push(
-//                          MaterialPageRoute(builder: (context) {
-//                            return Player(
-//                              programTypeData: ProgramtypeData(),
-//                              isSleepDeck: true,
-//                              currentProgram: Programs(),
-//                              sleepDecks: sleepDeckModel.yourDecks,
-//                            );
-//                          }),
-//                        );
-
-                        SongData songs = SongData(
-                          songs: sleepDeckModel.yourDecks.program,
-                        );
-
-                        Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                                builder: (context) => new NowPlaying(
-                                    true,
-                                    songs,
-                                    songs.songs[0],
-                                    MusicFile(_emailController.text,
-                                        sleepDeckModel.yourDecks.program),
-                                    0)));
-
-                        return;
-                      }
-
-                      List<String> audios = [];
-                      List<Program> decks = [];
-                      CoverImage coverImage;
-                      String programTypeId;
-                      String sound;
-                      int themeId;
-                      int duration;
-                      if (sleepDeckModel.isWindDownSelected) {
-                        audios.add(sleepDeckModel.windDownProgram.songPath);
-                        decks.add(Program(
-                          id: 1,
-                          name: sleepDeckModel.windDownProgram.name,
-                          avatar: sleepDeckModel.windDownProgram.avatar,
-                          songPath: sleepDeckModel.windDownProgram.songPath,
-                          duration: sleepDeckModel.windDownProgram.duration,
-                          songToken: sleepDeckModel.windDownProgram.songToken,
-                          avatarToken:
-                              sleepDeckModel.windDownProgram.avatarToken,
-                        ));
-                      }
-                      if (sleepDeckModel.isSleepDeepSelected) {
-                        for (var i = 0;
-                            i < sleepDeckModel.sleepDeepCount;
-                            i++) {
-                          audios.add(sleepDeckModel.sleepDeepProgram.songPath);
-                          decks.add(Program(
-                            id: 2,
-                            name: sleepDeckModel.sleepDeepProgram.name,
-                            avatar: sleepDeckModel.sleepDeepProgram.avatar,
-                            songPath: sleepDeckModel.sleepDeepProgram.songPath,
-                            duration: sleepDeckModel.sleepDeepProgram.duration,
-                            songToken:
-                                sleepDeckModel.sleepDeepProgram.songToken,
-                            avatarToken:
-                                sleepDeckModel.sleepDeepProgram.avatarToken,
-                          ));
-                        }
-                      }
-                      if (sleepDeckModel.isNapRecoverySelected) {
-                        audios.add(sleepDeckModel.napRecoveryProgram.songPath);
-                        decks.add(Program(
-                          id: 3,
-                          name: sleepDeckModel.napRecoveryProgram.name,
-                          avatar: sleepDeckModel.napRecoveryProgram.avatar,
-                          songPath: sleepDeckModel.napRecoveryProgram.songPath,
-                          duration: sleepDeckModel.napRecoveryProgram.duration,
-                          songToken:
-                              sleepDeckModel.napRecoveryProgram.songToken,
-                          avatarToken:
-                              sleepDeckModel.napRecoveryProgram.avatarToken,
-                        ));
-                      }
-
-                      if (sleepDeckModel.isWakeUpSelected) {
-                        audios.add(sleepDeckModel.wakeUpProgram.songPath);
-                        decks.add(Program(
-                          id: 4,
-                          name: sleepDeckModel.wakeUpProgram.name,
-                          avatar: sleepDeckModel.wakeUpProgram.avatar,
-                          songPath: sleepDeckModel.wakeUpProgram.songPath,
-                          duration: sleepDeckModel.wakeUpProgram.duration,
-                          songToken: sleepDeckModel.wakeUpProgram.songToken,
-                          avatarToken: sleepDeckModel.wakeUpProgram.avatarToken,
-                        ));
-                      }
-
-//                      requestModel.decks = decks;
-
-//                      sleepDeckModel.yourDecks =
-//                          SleepDecks(name: "", decks: decks);
-
-//                      widget.sleepDecks
-
-//                      print("requestModel ==== $requestModel");
-                      showDeckSaveSheet(decks);
-                    },
-                    color: AppColors.your_sleep_deck_color_button,
-                    textColor: AppColors.white,
-                    child: Text("Load your Sleep Deck",
-                        style: TextStyle(fontSize: 14)),
-                  ),
-                ),
-                Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: InkWell(
-                      child: Image.asset("assets/torch.png"),
-                      onTap: () {},
-                    ))
-              ],
-            ),
-          )
+          buildSaveDeck(context)
         ],
       ),
     ));
+  }
+
+  Container buildSaveDeck(BuildContext context) {
+    return Container(
+      height: 80,
+      color: Colors.indigo,
+      child: Stack(
+        children: <Widget>[
+          Center(
+            child: RaisedButton(
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.transparent)),
+              onPressed: () async {
+                print("audio clicked");
+
+                if (sleepDeckModel.isWindDownSelected ||
+                    sleepDeckModel.isSleepDeepSelected ||
+                    sleepDeckModel.isNapRecoverySelected ||
+                    sleepDeckModel.isWakeUpSelected ||
+                    sleepDeckModel.isYourSleepDeckSelected) {
+                } else {
+                  generic.alertDialog(context, "Alert",
+                      "Please choose atleast 1 program", () {});
+                  return;
+                }
+
+                if (sleepDeckModel.isYourSleepDeckSelected) {
+                  SongData songs = SongData(
+                    songs: sleepDeckModel.yourDecks.program,
+                  );
+
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new NowPlaying(
+                              true,
+                              songs,
+                              songs.songs[0],
+                              MusicFile(_emailController.text,
+                                  sleepDeckModel.yourDecks.program),
+                              0)));
+
+                  return;
+                }
+
+                List<String> audios = [];
+                List<Program> decks = [];
+                CoverImage coverImage;
+                String programTypeId;
+                String sound;
+                int themeId;
+                int duration;
+                if (sleepDeckModel.isWindDownSelected) {
+                  audios.add(sleepDeckModel.windDownProgram.songPath);
+                  decks.add(Program(
+                    id: 1,
+                    name: sleepDeckModel.windDownProgram.name,
+                    avatar: sleepDeckModel.windDownProgram.avatar,
+                    songPath: sleepDeckModel.windDownProgram.songPath,
+                    duration: sleepDeckModel.windDownProgram.duration,
+                    songToken: sleepDeckModel.windDownProgram.songToken,
+                    avatarToken: sleepDeckModel.windDownProgram.avatarToken,
+                  ));
+                }
+                if (sleepDeckModel.isSleepDeepSelected) {
+                  for (var i = 0; i < sleepDeckModel.sleepDeepCount; i++) {
+                    audios.add(sleepDeckModel.sleepDeepProgram.songPath);
+                    decks.add(Program(
+                      id: 2,
+                      name: sleepDeckModel.sleepDeepProgram.name,
+                      avatar: sleepDeckModel.sleepDeepProgram.avatar,
+                      songPath: sleepDeckModel.sleepDeepProgram.songPath,
+                      duration: sleepDeckModel.sleepDeepProgram.duration,
+                      songToken: sleepDeckModel.sleepDeepProgram.songToken,
+                      avatarToken: sleepDeckModel.sleepDeepProgram.avatarToken,
+                    ));
+                  }
+                }
+                if (sleepDeckModel.isNapRecoverySelected) {
+                  audios.add(sleepDeckModel.napRecoveryProgram.songPath);
+                  decks.add(Program(
+                    id: 3,
+                    name: sleepDeckModel.napRecoveryProgram.name,
+                    avatar: sleepDeckModel.napRecoveryProgram.avatar,
+                    songPath: sleepDeckModel.napRecoveryProgram.songPath,
+                    duration: sleepDeckModel.napRecoveryProgram.duration,
+                    songToken: sleepDeckModel.napRecoveryProgram.songToken,
+                    avatarToken: sleepDeckModel.napRecoveryProgram.avatarToken,
+                  ));
+                }
+
+                if (sleepDeckModel.isWakeUpSelected) {
+                  audios.add(sleepDeckModel.wakeUpProgram.songPath);
+                  decks.add(Program(
+                    id: 4,
+                    name: sleepDeckModel.wakeUpProgram.name,
+                    avatar: sleepDeckModel.wakeUpProgram.avatar,
+                    songPath: sleepDeckModel.wakeUpProgram.songPath,
+                    duration: sleepDeckModel.wakeUpProgram.duration,
+                    songToken: sleepDeckModel.wakeUpProgram.songToken,
+                    avatarToken: sleepDeckModel.wakeUpProgram.avatarToken,
+                  ));
+                }
+
+                showDeckSaveSheet(decks);
+              },
+              color: AppColors.your_sleep_deck_color_button,
+              textColor: AppColors.white,
+              child:
+                  Text("Load your Sleep Deck", style: TextStyle(fontSize: 14)),
+            ),
+          ),
+          Positioned(
+              bottom: 0,
+              right: 0,
+              child: InkWell(
+                child: Image.asset("assets/torch.png"),
+                onTap: () {},
+              ))
+        ],
+      ),
+    );
   }
 
   // <editor-fold desc=" Creating Expansion tiles">
@@ -1011,6 +982,7 @@ class _SleepDeckState extends State<SleepDeck> {
 
   // </editor-fold>
 
+  // <editor-fold desc=" Create SleepDeck list and selection handler ">
   List<Widget> getSleepDeckWidgets(List<Decks> programs) {
     List<Widget> list = new List<Widget>();
     for (var i = 0; i < programs.length; i++) {
@@ -1092,6 +1064,7 @@ class _SleepDeckState extends State<SleepDeck> {
     }
     return list;
   }
+// </editor-fold>
 
   // <editor-fold desc=" Progress bar widget for saved / sleep deck ">
   List<Widget> getSleepSequenceSaved(SleepDeckData programs) {
@@ -1942,7 +1915,7 @@ class _SleepDeckState extends State<SleepDeck> {
 
 }
 
-// <editor-fold desc=" Dialogs For application indicator showing while app connecting to the network ">
+  // <editor-fold desc=" Dialogs For application indicator showing while app connecting to the network ">
 class Dialogs {
   static Future<void> showLoadingDialog(
       BuildContext context, GlobalKey key) async {
